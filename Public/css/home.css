@@ -20,7 +20,7 @@
 .hero-section .sub-heading{
     margin-top: 10px;
     text-align: center;
-    color: #fff;
+    color: #000000;
     text-transform: capitalize;
     font-size: 35px;
     font-weight: 300;
@@ -167,6 +167,8 @@
 
 .pre-btn img, .nxt-btn img{
     opacity: 0.2;
+    width: 60px;
+    height: 60px; 
 }
 
 .pre-btn:hover img, .nxt-btn:hover img{
