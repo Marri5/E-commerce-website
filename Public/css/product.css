@@ -136,13 +136,8 @@
 }
 
 .product-container{
-
     display: grid;
-
     grid-template-columns: repeat(4, 1fr);
-
     height: auto;
-
     grid-row-gap: 40px;
-
 }
