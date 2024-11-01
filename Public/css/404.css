@@ -1,2 +1,14 @@
 @import '/Public/css/nav.css';
 @import '/Public/css/footer.css';
+
+.four-0-four-image {
+    display: block;
+    margin: 0 auto;
+}
+
+.four-0-four-msg {
+    text-align: center;
+    margin-top: 10px; /* Space above the text */
+    margin-bottom: 20px; /* Space below the text */
+    padding-bottom: 20px; /* Additional space below the text */
+}
