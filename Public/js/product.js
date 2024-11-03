@@ -1,5 +1,3 @@
-
-
 const productImages = document.querySelectorAll(".product-images img");
 const productImageSlide = document.querySelector(".image-slider");
 
