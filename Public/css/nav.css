@@ -54,8 +54,9 @@
 }
 
 .search{
-    width: 500px;
-    display: flex;
+    width: 400px;
+    display: flex
+    
 }
 
 .search-box{
@@ -72,7 +73,7 @@
 }
 
 .search-btn{
-    width: 20%;
+    width: auto;
     height: 40px;
     padding: 10px 20px;
     border: none;
@@ -84,6 +85,7 @@
     font-size: 15px;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    margin-left: -20px;
 }
 
 .search-box::placeholder{
