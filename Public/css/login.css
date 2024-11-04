@@ -25,7 +25,7 @@ body {
     color: #333333;
 }
 
-.login-container input[type="text"],
+.login-container input[type="email"],
 .login-container input[type="password"] {
     width: 100%;
     padding: 15px; /* Increased padding */
