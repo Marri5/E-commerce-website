@@ -1,26 +1,44 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const authRoutes = require("../routes/auth");
-const protectedRoutes = require("../routes/protected");
-const dotenv = require("dotenv");
-
-dotenv.config();
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
+const port = 3000;
 
-app.use(express.json());
+app.use(bodyParser.json());
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log("MongoDB connected"))
-.catch(error => console.error("MongoDB connection error:", error));
+mongoose.connect('mongodb://localhost:27017/yourDatabaseName', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
 
-app.use("/api/auth", authRoutes);         
-app.use("/api/protected", protectedRoutes);
+const UserSchema = new mongoose.Schema({
+    username: String,
+    password: String,
+    cart: Array
+});
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+const User = mongoose.model('User', UserSchema);
+
+app.post('/login', async (req, res) => {
+    const { username, password } = req.body;
+    const user = await User.findOne({ username, password });
+    if (user) {
+        res.json({ success: true, user });
+    } else {
+        res.json({ success: false, message: 'Invalid credentials' });
+    }
+});
+
+app.post('/cart', async (req, res) => {
+    const { username, cart } = req.body;
+    const user = await User.findOneAndUpdate({ username }, { cart }, { new: true });
+    if (user) {
+        res.json({ success: true, user });
+    } else {
+        res.json({ success: false, message: 'User not found' });
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
 });
