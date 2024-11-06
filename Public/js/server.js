@@ -3,17 +3,20 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const JWT_SECRET = 'your_jwt_secret'; // Replace with your own secret
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/auth', {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
@@ -53,21 +56,22 @@ app.post('/login', async (req, res) => {
         return res.status(400).send('Email and password are required');
     }
 
-    const user = await User.findOne({ email });
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).send('Invalid email or password');
+        }
 
-    if (!user) {
-        return res.status(400).send('Invalid email or password');
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        if (!isPasswordValid) {
+            return res.status(400).send('Invalid email or password');
+        }
+
+        const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
+        res.status(200).json({ token });
+    } catch (error) {
+        res.status(500).send('Server error');
     }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
-        return res.status(400).send('Invalid email or password');
-    }
-
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
-
-    res.status(200).json({ token });
 });
 
 // Start the server
