@@ -1,4 +1,3 @@
-
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2;
@@ -32,6 +31,7 @@ body {
     margin: 10px 0;
     border: 1px solid #cccccc;
     border-radius: 4px;
+    box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
 .login-container button {
@@ -44,6 +44,7 @@ body {
     font-size: 18px; /* Increased font size */
     cursor: pointer;
     margin-top: 10px; /* Added margin */
+    box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
 .login-container button:hover {
@@ -63,4 +64,9 @@ body {
 .login-container .register-link:hover,
 .login-container .go-back-link:hover {
     text-decoration: underline;
+    color: #4CAF50;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    opacity: 0.8;
+    text-decoration: none;
 }

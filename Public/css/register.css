@@ -1,2 +1,68 @@
-@import '/Public/css/nav.css';
-@import '/Public/css/footer.css';
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.register-container {
+    background-color: #ffffff;
+    padding: 40px; /* Increased padding */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Increased width */
+}
+
+.register-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"] {
+    width: 100%;
+    padding: 15px; /* Increased padding */
+    margin: 10px 0;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.register-container button {
+    width: 100%;
+    padding: 15px; /* Increased padding */
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 18px; /* Increased font size */
+    cursor: pointer;
+    margin-top: 10px; /* Added margin */
+    box-sizing: border-box; /* Ensure padding is included in the width */
+}
+
+.register-container button:hover {
+    background-color: #45a049;
+}
+
+.register-container .login-link-container {
+    text-align: center;
+    margin-top: 30px; /* Space above the text */
+    font-size: 16px; /* Font size */
+    color: #333333; /* Text color */
+}
+
+.register-container .login-link-container a {
+    color: #4CAF50; /* Link color */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Make the link bold */
+}
+
+.register-container .login-link-container a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
