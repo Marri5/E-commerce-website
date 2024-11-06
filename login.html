@@ -7,15 +7,17 @@
     <link rel="stylesheet" href="Public/css/login.css">
 </head>
 <body>
+    
     <div class="login-container">
         <h2>Login</h2>
-        <form>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
+        <form action="/login" method="POST">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
             <a href="register.html" class="register-link">Register</a>
             <a href="index.html" class="go-back-link">Homepage</a>
         </form>
     </div>
+
 </body>
 </html>
