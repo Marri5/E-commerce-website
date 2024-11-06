@@ -11,17 +11,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
 
-// User schema and model
 const userSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
@@ -29,7 +26,6 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Register route
 app.post('/register', async (req, res) => {
     const { email, password } = req.body;
 
@@ -48,7 +44,6 @@ app.post('/register', async (req, res) => {
     }
 });
 
-// Login route
 app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
@@ -74,7 +69,6 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
